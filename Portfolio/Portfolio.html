@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Isaac Wainaina">
+
+<title>Penguin Data Analysis Portfolio</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Portfolio_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Portfolio_files/libs/quarto-html/quarto.js"></script>
+<script src="Portfolio_files/libs/quarto-html/popper.min.js"></script>
+<script src="Portfolio_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Portfolio_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Portfolio_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Portfolio_files/libs/quarto-html/quarto-syntax-highlighting-de84f8d6bb715db06a919283c2d1e787.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Portfolio_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Portfolio_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Portfolio_files/libs/bootstrap/bootstrap-cf43a150f4ed865b4eb4d60b88c21c49.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link active" data-scroll-target="#dataset-overview">Dataset overview</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive statistics</a>
+  <ul class="collapse">
+  <li><a href="#summary-statistics-of-key-measurements" id="toc-summary-statistics-of-key-measurements" class="nav-link" data-scroll-target="#summary-statistics-of-key-measurements">Summary Statistics of Key Measurements</a></li>
+  <li><a href="#count-by-species" id="toc-count-by-species" class="nav-link" data-scroll-target="#count-by-species">Count by Species</a></li>
+  <li><a href="#count-by-island" id="toc-count-by-island" class="nav-link" data-scroll-target="#count-by-island">Count by Island</a></li>
+  <li><a href="#count-by-sex" id="toc-count-by-sex" class="nav-link" data-scroll-target="#count-by-sex">Count by Sex</a></li>
+  <li><a href="#count-by-species-and-sex" id="toc-count-by-species-and-sex" class="nav-link" data-scroll-target="#count-by-species-and-sex">Count by Species and Sex</a></li>
+  <li><a href="#count-by-sex-and-island" id="toc-count-by-sex-and-island" class="nav-link" data-scroll-target="#count-by-sex-and-island">Count by Sex and Island</a></li>
+  <li><a href="#count-by-species-and-island" id="toc-count-by-species-and-island" class="nav-link" data-scroll-target="#count-by-species-and-island">Count by Species and Island</a></li>
+  <li><a href="#mean-measurements-by-species" id="toc-mean-measurements-by-species" class="nav-link" data-scroll-target="#mean-measurements-by-species">Mean Measurements by Species</a></li>
+  <li><a href="#mean-measurements-by-sex" id="toc-mean-measurements-by-sex" class="nav-link" data-scroll-target="#mean-measurements-by-sex">Mean Measurements by Sex</a></li>
+  <li><a href="#median-measurements-by-species" id="toc-median-measurements-by-species" class="nav-link" data-scroll-target="#median-measurements-by-species">Median Measurements by Species</a></li>
+  <li><a href="#median-measurements-by-sex" id="toc-median-measurements-by-sex" class="nav-link" data-scroll-target="#median-measurements-by-sex">Median Measurements by Sex</a></li>
+  <li><a href="#mode-measurements-by-sex" id="toc-mode-measurements-by-sex" class="nav-link" data-scroll-target="#mode-measurements-by-sex">Mode Measurements by Sex</a></li>
+  <li><a href="#mode-measurements-by-species" id="toc-mode-measurements-by-species" class="nav-link" data-scroll-target="#mode-measurements-by-species">Mode Measurements by Species</a></li>
+  </ul></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a>
+  <ul class="collapse">
+  <li><a href="#bill-length-vs-depth" id="toc-bill-length-vs-depth" class="nav-link" data-scroll-target="#bill-length-vs-depth">Bill length vs Depth</a></li>
+  <li><a href="#flipper-length-vs-body-mass" id="toc-flipper-length-vs-body-mass" class="nav-link" data-scroll-target="#flipper-length-vs-body-mass">Flipper length vs Body mass</a></li>
+  <li><a href="#body-mass-by-species" id="toc-body-mass-by-species" class="nav-link" data-scroll-target="#body-mass-by-species">Body mass by species</a></li>
+  <li><a href="#species-by-island" id="toc-species-by-island" class="nav-link" data-scroll-target="#species-by-island">Species by island</a></li>
+  <li><a href="#flipper-length-vs-body-mass-by-island" id="toc-flipper-length-vs-body-mass-by-island" class="nav-link" data-scroll-target="#flipper-length-vs-body-mass-by-island">Flipper length vs body mass by island</a></li>
+  <li><a href="#bill-length-and-depth-by-sex" id="toc-bill-length-and-depth-by-sex" class="nav-link" data-scroll-target="#bill-length-and-depth-by-sex">Bill length and depth by sex</a></li>
+  <li><a href="#body-mass-by-species-and-sex" id="toc-body-mass-by-species-and-sex" class="nav-link" data-scroll-target="#body-mass-by-species-and-sex">Body mass by species and sex</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Penguin Data Analysis Portfolio</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Isaac Wainaina </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="dataset-overview" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-overview">Dataset overview</h2>
+<p>This portfolio explores the <strong>Palmer Penguins</strong> dataset to understand how penguin species differ in morphology and habitat. The goal is to practice data visualization, summary statistics, and exploratory data analysis using R and Quarto.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive statistics</h2>
+<section id="summary-statistics-of-key-measurements" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics-of-key-measurements">Summary Statistics of Key Measurements</h3>
+<p><a href="#fig-summary" class="quarto-xref">Figure&nbsp;1</a> shows summary statistics of key penguin measurements</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Bill Length (mm)"</span> <span class="ot">=</span> bill_length_mm,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Bill Depth (mm)"</span> <span class="ot">=</span> bill_depth_mm,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Flipper Length (mm)"</span> <span class="ot">=</span> flipper_length_mm,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Body Mass (g)"</span> <span class="ot">=</span> body_mass_g</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="at">ncol =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="st">"Min."</span>, <span class="st">"1st Qu."</span>, <span class="st">"Median"</span>, <span class="st">"Mean"</span>, <span class="st">"3rd Qu."</span>, <span class="st">"Max."</span>, <span class="st">"NA's"</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="st">"Bill Length (mm)"</span>, <span class="st">"Bill Depth (mm)"</span>, <span class="st">"Flipper Length (mm)"</span>, <span class="st">"Body Mass (g)"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>         )) <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Summary statistics of key penguin measurements"</span>, <span class="at">align =</span> <span class="st">"r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-summary" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 22%">
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Bill Length (mm)</th>
+<th style="text-align: right;">Bill Depth (mm)</th>
+<th style="text-align: right;">Flipper Length (mm)</th>
+<th style="text-align: right;">Body Mass (g)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Min.</td>
+<td style="text-align: right;">Min. :32.10</td>
+<td style="text-align: right;">Min. :13.10</td>
+<td style="text-align: right;">Min. :172.0</td>
+<td style="text-align: right;">Min. :2700</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1st Qu.</td>
+<td style="text-align: right;">1st Qu.:39.23</td>
+<td style="text-align: right;">1st Qu.:15.60</td>
+<td style="text-align: right;">1st Qu.:190.0</td>
+<td style="text-align: right;">1st Qu.:3550</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Median</td>
+<td style="text-align: right;">Median :44.45</td>
+<td style="text-align: right;">Median :17.30</td>
+<td style="text-align: right;">Median :197.0</td>
+<td style="text-align: right;">Median :4050</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mean</td>
+<td style="text-align: right;">Mean :43.92</td>
+<td style="text-align: right;">Mean :17.15</td>
+<td style="text-align: right;">Mean :200.9</td>
+<td style="text-align: right;">Mean :4202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3rd Qu.</td>
+<td style="text-align: right;">3rd Qu.:48.50</td>
+<td style="text-align: right;">3rd Qu.:18.70</td>
+<td style="text-align: right;">3rd Qu.:213.0</td>
+<td style="text-align: right;">3rd Qu.:4750</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Max.</td>
+<td style="text-align: right;">Max. :59.60</td>
+<td style="text-align: right;">Max. :21.50</td>
+<td style="text-align: right;">Max. :231.0</td>
+<td style="text-align: right;">Max. :6300</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NA’s</td>
+<td style="text-align: right;">NA’s :2</td>
+<td style="text-align: right;">NA’s :2</td>
+<td style="text-align: right;">NA’s :2</td>
+<td style="text-align: right;">NA’s :2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Summary statistics of key penguin measurements
+</figcaption>
+</figure>
+</div>
+</div>
+<p>The penguins in the dataset show distinct variation in body morphology:</p>
+<ul>
+<li><p><strong>Bill length</strong> ranges from around 32 mm to 60 mm, with an average of about 44 mm.</p></li>
+<li><p><strong>Bill depth</strong> averages approximately 17 mm, ranging from about 13 mm to 21 mm.</p></li>
+<li><p><strong>Flipper length</strong> spans from 172 mm to 231 mm, with a mean close to 201 mm.</p></li>
+<li><p><strong>Body mass</strong> varies widely, from 2700 g to 6300 g, averaging around 4200 g.</p></li>
+</ul>
+</section>
+<section id="count-by-species" class="level3">
+<h3 class="anchored" data-anchor-id="count-by-species">Count by Species</h3>
+<p><a href="#fig-spec-count" class="quarto-xref">Figure&nbsp;2</a> shows the number of penguins by species</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Species"</span>, <span class="st">"Count"</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Number of Penguins by Species"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-spec-count" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spec-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Species</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">152</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: right;">68</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: right;">124</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spec-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Number of Penguins by Species
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="count-by-island" class="level3">
+<h3 class="anchored" data-anchor-id="count-by-island">Count by Island</h3>
+<p><a href="#fig-isl-count" class="quarto-xref">Figure&nbsp;3</a> shows number of penguins by island</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>island) <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Island"</span>, <span class="st">"Count"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Number of Penguins by Island"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-isl-count" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-isl-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Island</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Biscoe</td>
+<td style="text-align: right;">168</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dream</td>
+<td style="text-align: right;">124</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Torgersen</td>
+<td style="text-align: right;">52</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-isl-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Number of Penguins by Island
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="count-by-sex" class="level3">
+<h3 class="anchored" data-anchor-id="count-by-sex">Count by Sex</h3>
+<p><a href="#fig-sex-count" class="quarto-xref">Figure&nbsp;4</a> shows number of penguins by sex</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>sex) <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Sex"</span>, <span class="st">"Count"</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Number of Penguins by Sex"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-sex-count" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sex-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sex</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">165</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">168</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sex-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Number of Penguins by Sex
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="count-by-species-and-sex" class="level3">
+<h3 class="anchored" data-anchor-id="count-by-species-and-sex">Count by Species and Sex</h3>
+<p><a href="#fig-sex-species-count" class="quarto-xref">Figure&nbsp;5</a> number of Penguins by species and sex</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>sex) <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Var2)) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Var2,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> Freq,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_fill =</span> <span class="dv">0</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Species =</span> Var1) <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Penguin Count by Species and Sex (excluding unknown sex)"</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-sex-species-count" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sex-species-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Species</th>
+<th style="text-align: right;">female</th>
+<th style="text-align: right;">male</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">73</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">61</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sex-species-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Penguin Count by Species and Sex (excluding unknown sex)
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="count-by-sex-and-island" class="level3">
+<h3 class="anchored" data-anchor-id="count-by-sex-and-island">Count by Sex and Island</h3>
+<p><a href="#fig-isl-sex-count" class="quarto-xref">Figure&nbsp;6</a> number of penguins by sex and island</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>sex, penguins<span class="sc">$</span>island) <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Var2,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> Freq,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_fill =</span> <span class="dv">0</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Sex =</span> Var1) <span class="sc">|&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Penguin Count by Sex and Island"</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-isl-sex-count" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-isl-sex-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sex</th>
+<th style="text-align: right;">Biscoe</th>
+<th style="text-align: right;">Dream</th>
+<th style="text-align: right;">Torgersen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">23</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-isl-sex-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Penguin Count by Sex and Island
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="count-by-species-and-island" class="level3">
+<h3 class="anchored" data-anchor-id="count-by-species-and-island">Count by Species and Island</h3>
+<p><a href="#fig-isl-species-count" class="quarto-xref">Figure&nbsp;7</a> number of penguins by species and island</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island) <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Var2,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> Freq,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_fill =</span> <span class="dv">0</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Species =</span> Var1) <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Penguin Count by Species and Island"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-isl-species-count" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-isl-species-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Species</th>
+<th style="text-align: right;">Biscoe</th>
+<th style="text-align: right;">Dream</th>
+<th style="text-align: right;">Torgersen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">52</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-isl-species-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Penguin Count by Species and Island
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="mean-measurements-by-species" class="level3">
+<h3 class="anchored" data-anchor-id="mean-measurements-by-species">Mean Measurements by Species</h3>
+<p><a href="#fig-species-mean" class="quarto-xref">Figure&nbsp;8</a> shows mean morphological measurements by species</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_bill_depth =</span> <span class="fu">mean</span>(bill_depth_mm),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_flipper_length =</span> <span class="fu">mean</span>(flipper_length_mm),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_body_mass =</span> <span class="fu">mean</span>(body_mass_g)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>            ) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">round</span>(x, <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Mean Morphological Measurements by Species"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"r"</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-species-mean" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-species-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 21%">
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">species</th>
+<th style="text-align: right;">mean_bill_length</th>
+<th style="text-align: right;">mean_bill_depth</th>
+<th style="text-align: right;">mean_flipper_length</th>
+<th style="text-align: right;">mean_body_mass</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Adelie</td>
+<td style="text-align: right;">38.8</td>
+<td style="text-align: right;">18.3</td>
+<td style="text-align: right;">190.0</td>
+<td style="text-align: right;">3700.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Chinstrap</td>
+<td style="text-align: right;">48.8</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">195.8</td>
+<td style="text-align: right;">3733.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Gentoo</td>
+<td style="text-align: right;">47.5</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">217.2</td>
+<td style="text-align: right;">5076.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-species-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Mean Morphological Measurements by Species
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="mean-measurements-by-sex" class="level3">
+<h3 class="anchored" data-anchor-id="mean-measurements-by-sex">Mean Measurements by Sex</h3>
+<p><a href="#fig-sex-mean" class="quarto-xref">Figure&nbsp;9</a> shows mean morphological measurements by sex</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length =</span> <span class="fu">mean</span>(bill_length_mm),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_bill_depth =</span> <span class="fu">mean</span>(bill_depth_mm),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_flipper_length =</span> <span class="fu">mean</span>(flipper_length_mm),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_body_mass =</span> <span class="fu">mean</span>(body_mass_g)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>            ) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">round</span>(x, <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Mean Morphological Measurements by Sex"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"r"</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-sex-mean" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sex-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 22%">
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">sex</th>
+<th style="text-align: right;">mean_bill_length</th>
+<th style="text-align: right;">mean_bill_depth</th>
+<th style="text-align: right;">mean_flipper_length</th>
+<th style="text-align: right;">mean_body_mass</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">female</td>
+<td style="text-align: right;">42.1</td>
+<td style="text-align: right;">16.4</td>
+<td style="text-align: right;">197.4</td>
+<td style="text-align: right;">3862.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">45.9</td>
+<td style="text-align: right;">17.9</td>
+<td style="text-align: right;">204.5</td>
+<td style="text-align: right;">4545.7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sex-mean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Mean Morphological Measurements by Sex
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="median-measurements-by-species" class="level3">
+<h3 class="anchored" data-anchor-id="median-measurements-by-species">Median Measurements by Species</h3>
+<p><a href="#fig-species-median" class="quarto-xref">Figure&nbsp;10</a> shows median morphological measurements by species</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_bill_length =</span> <span class="fu">median</span>(bill_length_mm),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_bill_depth =</span> <span class="fu">median</span>(bill_depth_mm),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_flipper_length =</span> <span class="fu">median</span>(flipper_length_mm),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_body_mass =</span> <span class="fu">median</span>(body_mass_g)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">round</span>(x, <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Median Morphological Measurements by Species"</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"r"</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-species-median" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-species-median-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">species</th>
+<th style="text-align: right;">median_bill_length</th>
+<th style="text-align: right;">median_bill_depth</th>
+<th style="text-align: right;">median_flipper_length</th>
+<th style="text-align: right;">median_body_mass</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Adelie</td>
+<td style="text-align: right;">38.8</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">3700</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Chinstrap</td>
+<td style="text-align: right;">49.5</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">196</td>
+<td style="text-align: right;">3700</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Gentoo</td>
+<td style="text-align: right;">47.4</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">216</td>
+<td style="text-align: right;">5050</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-species-median-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Median Morphological Measurements by Species
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="median-measurements-by-sex" class="level3">
+<h3 class="anchored" data-anchor-id="median-measurements-by-sex">Median Measurements by Sex</h3>
+<p><a href="#fig-sex-median" class="quarto-xref">Figure&nbsp;11</a> shows median morphological measurements by sex</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_bill_length =</span> <span class="fu">median</span>(bill_length_mm),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_bill_depth =</span> <span class="fu">median</span>(bill_depth_mm),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_flipper_length =</span> <span class="fu">median</span>(flipper_length_mm),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_body_mass =</span> <span class="fu">median</span>(body_mass_g)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">round</span>(x, <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Median Morphological Measurements by Sex"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"r"</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-sex-median" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sex-median-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">sex</th>
+<th style="text-align: right;">median_bill_length</th>
+<th style="text-align: right;">median_bill_depth</th>
+<th style="text-align: right;">median_flipper_length</th>
+<th style="text-align: right;">median_body_mass</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">female</td>
+<td style="text-align: right;">42.8</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: right;">193.0</td>
+<td style="text-align: right;">3650</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">46.8</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">200.5</td>
+<td style="text-align: right;">4300</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sex-median-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Median Morphological Measurements by Sex
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="mode-measurements-by-sex" class="level3">
+<h3 class="anchored" data-anchor-id="mode-measurements-by-sex">Mode Measurements by Sex</h3>
+<p><a href="#fig-sex-mode" class="quarto-xref">Figure&nbsp;12</a> shows mode morphological measurements by sex</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>get_mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  ux <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">unique</span>(x))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  ux[<span class="fu">which.max</span>(<span class="fu">tabulate</span>(<span class="fu">match</span>(x, ux)))]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode_bill_length =</span> <span class="fu">get_mode</span>(bill_length_mm),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode_bill_depth =</span> <span class="fu">get_mode</span>(bill_depth_mm),</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode_flipper_length =</span> <span class="fu">get_mode</span>(flipper_length_mm),</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode_body_mass =</span> <span class="fu">get_mode</span>(body_mass_g)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Mode Morphological Measurements by Sex"</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"r"</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-sex-mode" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sex-mode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 22%">
+<col style="width: 21%">
+<col style="width: 26%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">sex</th>
+<th style="text-align: right;">mode_bill_length</th>
+<th style="text-align: right;">mode_bill_depth</th>
+<th style="text-align: right;">mode_flipper_length</th>
+<th style="text-align: right;">mode_body_mass</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">female</td>
+<td style="text-align: right;">46.5</td>
+<td style="text-align: right;">17.8</td>
+<td style="text-align: right;">187</td>
+<td style="text-align: right;">3700</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">41.1</td>
+<td style="text-align: right;">19.0</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">3950</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sex-mode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Mode Morphological Measurements by Sex
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="mode-measurements-by-species" class="level3">
+<h3 class="anchored" data-anchor-id="mode-measurements-by-species">Mode Measurements by Species</h3>
+<p><a href="#fig-species-mode" class="quarto-xref">Figure&nbsp;13</a> shows mode morphological measurements by species</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode_bill_length =</span> <span class="fu">get_mode</span>(bill_length_mm),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode_bill_depth =</span> <span class="fu">get_mode</span>(bill_depth_mm),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode_flipper_length =</span> <span class="fu">get_mode</span>(flipper_length_mm),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode_body_mass =</span> <span class="fu">get_mode</span>(body_mass_g)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Mode Morphological Measurements by Species"</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"r"</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-species-mode" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-species-mode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<caption>Mode Morphological Measurements by Species</caption>
+<colgroup>
+<col style="width: 12%">
+<col style="width: 21%">
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">species</th>
+<th style="text-align: right;">mode_bill_length</th>
+<th style="text-align: right;">mode_bill_depth</th>
+<th style="text-align: right;">mode_flipper_length</th>
+<th style="text-align: right;">mode_body_mass</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Adelie</td>
+<td style="text-align: right;">41.1</td>
+<td style="text-align: right;">18.5</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">3800</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Chinstrap</td>
+<td style="text-align: right;">51.3</td>
+<td style="text-align: right;">17.3</td>
+<td style="text-align: right;">195</td>
+<td style="text-align: right;">3650</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Gentoo</td>
+<td style="text-align: right;">50.0</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">215</td>
+<td style="text-align: right;">5550</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-species-mode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Mode Morphological Measurements by Species
+</figcaption>
+</figure>
+</div>
+</div>
+<p><a href="#fig-species-summary-all" class="quarto-xref">Figure&nbsp;14</a> mean, median, and mode morphological measurements by species</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>get_mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  ux <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">unique</span>(x))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  ux[<span class="fu">which.max</span>(<span class="fu">tabulate</span>(<span class="fu">match</span>(x, ux)))]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>mean_tbl <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm)) <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(bill_length_mm),</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Depth (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(bill_depth_mm),</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(flipper_length_mm),</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statistic =</span> <span class="st">"Mean"</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>median_tbl <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm)) <span class="sc">|&gt;</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(bill_length_mm),</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Depth (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(bill_depth_mm),</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(flipper_length_mm),</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(body_mass_g),</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statistic =</span> <span class="st">"Median"</span>)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>mode_tbl <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm)) <span class="sc">|&gt;</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">get_mode</span>(bill_length_mm),</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Depth (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">get_mode</span>(bill_depth_mm),</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">get_mode</span>(flipper_length_mm),</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">get_mode</span>(body_mass_g),</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statistic =</span> <span class="st">"Mode"</span>)</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mean_tbl, median_tbl, mode_tbl) <span class="sc">|&gt;</span></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(species, statistic), <span class="at">names_to =</span> <span class="st">"measurement"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> statistic, <span class="at">values_from =</span> value) <span class="sc">|&gt;</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(measurement, <span class="at">.after =</span> species) <span class="sc">|&gt;</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">round</span>(x, <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Mean, median, and mode morphological measurements by species"</span>,</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"r"</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-species-summary-all" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-species-summary-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<caption>Mean, median, and mode morphological measurements by species</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">species</th>
+<th style="text-align: right;">measurement</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Adelie</td>
+<td style="text-align: right;">Bill Length (mm)</td>
+<td style="text-align: right;">38.8</td>
+<td style="text-align: right;">38.8</td>
+<td style="text-align: right;">41.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Adelie</td>
+<td style="text-align: right;">Bill Depth (mm)</td>
+<td style="text-align: right;">18.3</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">18.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Adelie</td>
+<td style="text-align: right;">Flipper Length (mm)</td>
+<td style="text-align: right;">190.0</td>
+<td style="text-align: right;">190.0</td>
+<td style="text-align: right;">190.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Adelie</td>
+<td style="text-align: right;">Body Mass (g)</td>
+<td style="text-align: right;">3700.7</td>
+<td style="text-align: right;">3700.0</td>
+<td style="text-align: right;">3800.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Chinstrap</td>
+<td style="text-align: right;">Bill Length (mm)</td>
+<td style="text-align: right;">48.8</td>
+<td style="text-align: right;">49.5</td>
+<td style="text-align: right;">51.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Chinstrap</td>
+<td style="text-align: right;">Bill Depth (mm)</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">17.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Chinstrap</td>
+<td style="text-align: right;">Flipper Length (mm)</td>
+<td style="text-align: right;">195.8</td>
+<td style="text-align: right;">196.0</td>
+<td style="text-align: right;">195.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Chinstrap</td>
+<td style="text-align: right;">Body Mass (g)</td>
+<td style="text-align: right;">3733.1</td>
+<td style="text-align: right;">3700.0</td>
+<td style="text-align: right;">3650.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Gentoo</td>
+<td style="text-align: right;">Bill Length (mm)</td>
+<td style="text-align: right;">47.5</td>
+<td style="text-align: right;">47.3</td>
+<td style="text-align: right;">50.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Gentoo</td>
+<td style="text-align: right;">Bill Depth (mm)</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">15.0</td>
+<td style="text-align: right;">15.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Gentoo</td>
+<td style="text-align: right;">Flipper Length (mm)</td>
+<td style="text-align: right;">217.2</td>
+<td style="text-align: right;">216.0</td>
+<td style="text-align: right;">215.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Gentoo</td>
+<td style="text-align: right;">Body Mass (g)</td>
+<td style="text-align: right;">5076.0</td>
+<td style="text-align: right;">5000.0</td>
+<td style="text-align: right;">5550.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-species-summary-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Mean, median, and mode morphological measurements by species
+</figcaption>
+</figure>
+</div>
+</div>
+<p><a href="#fig-sex-summary-all" class="quarto-xref">Figure&nbsp;15</a> mean, median, and mode morphological measurements by sex</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>get_mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  ux <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">unique</span>(x))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  ux[<span class="fu">which.max</span>(<span class="fu">tabulate</span>(<span class="fu">match</span>(x, ux)))]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>mean_tbl <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(bill_length_mm),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Depth (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(bill_depth_mm),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(flipper_length_mm),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statistic =</span> <span class="st">"Mean"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>median_tbl <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(bill_length_mm),</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Depth (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(bill_depth_mm),</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(flipper_length_mm),</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">median</span>(body_mass_g),</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statistic =</span> <span class="st">"Median"</span>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>mode_tbl <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm), <span class="sc">!</span><span class="fu">is.na</span>(bill_depth_mm), <span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">get_mode</span>(bill_length_mm),</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Bill Depth (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">get_mode</span>(bill_depth_mm),</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Flipper Length (mm)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">get_mode</span>(flipper_length_mm),</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Body Mass (g)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">get_mode</span>(body_mass_g),</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">statistic =</span> <span class="st">"Mode"</span>)</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(mean_tbl, median_tbl, mode_tbl) <span class="sc">|&gt;</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(sex, statistic), <span class="at">names_to =</span> <span class="st">"measurement"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> statistic, <span class="at">values_from =</span> value) <span class="sc">|&gt;</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(measurement, <span class="at">.after =</span> sex) <span class="sc">|&gt;</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">round</span>(x, <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Mean, median, and mode morphological measurements by sex"</span>,</span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"r"</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-sex-summary-all" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sex-summary-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table table-sm table-striped small">
+<caption>Mean, median, and mode morphological measurements by sex</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">sex</th>
+<th style="text-align: right;">measurement</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">female</td>
+<td style="text-align: right;">Bill Length (mm)</td>
+<td style="text-align: right;">42.1</td>
+<td style="text-align: right;">42.8</td>
+<td style="text-align: right;">46.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">female</td>
+<td style="text-align: right;">Bill Depth (mm)</td>
+<td style="text-align: right;">16.4</td>
+<td style="text-align: right;">17.0</td>
+<td style="text-align: right;">17.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">female</td>
+<td style="text-align: right;">Flipper Length (mm)</td>
+<td style="text-align: right;">197.4</td>
+<td style="text-align: right;">193.0</td>
+<td style="text-align: right;">187.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">female</td>
+<td style="text-align: right;">Body Mass (g)</td>
+<td style="text-align: right;">3862.3</td>
+<td style="text-align: right;">3650.0</td>
+<td style="text-align: right;">3700.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">Bill Length (mm)</td>
+<td style="text-align: right;">45.9</td>
+<td style="text-align: right;">46.8</td>
+<td style="text-align: right;">41.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">Bill Depth (mm)</td>
+<td style="text-align: right;">17.9</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">19.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">Flipper Length (mm)</td>
+<td style="text-align: right;">204.5</td>
+<td style="text-align: right;">200.5</td>
+<td style="text-align: right;">190.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">male</td>
+<td style="text-align: right;">Body Mass (g)</td>
+<td style="text-align: right;">4545.7</td>
+<td style="text-align: right;">4300.0</td>
+<td style="text-align: right;">3950.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sex-summary-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Mean, median, and mode morphological measurements by sex
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="visualization" class="level2">
+<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
+<section id="bill-length-vs-depth" class="level3">
+<h3 class="anchored" data-anchor-id="bill-length-vs-depth">Bill length vs Depth</h3>
+<p><a href="#fig-bill-dims-species" class="quarto-xref">Figure&nbsp;16</a> below shows the bill length and depth of different penguin species</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm )) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> species, <span class="at">shape =</span> species), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Bill length and Bill depth of penguin species"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Adelie have shorter and deeper bill, Gentoo have longer and shallower bill"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Bill length(mm)"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Bill depth(mm)"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Species"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Species"</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-bill-dims-species" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot of penguins' bill depth and length, colored by species of penguins. There is a relatively strong, linear association.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bill-dims-species-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Portfolio_files/figure-html/fig-bill-dims-species-1.png" class="img-fluid figure-img" alt="A scatterplot of penguins' bill depth and length, colored by species of penguins. There is a relatively strong, linear association." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bill-dims-species-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: A scatterplot of penguins’ bill depth and length, colored by species of penguins.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The scatterplot shows a clear separation between species: Adelie penguins tend to have shorter, deeper bills; Gentoo have longer, shallower bills; and Chinstrap fall in between. This demonstrates that bill morphology can be a strong species identifier.</p>
+</section>
+<section id="flipper-length-vs-body-mass" class="level3">
+<h3 class="anchored" data-anchor-id="flipper-length-vs-body-mass">Flipper length vs Body mass</h3>
+<p><a href="#fig-flipper-bmass-species" class="quarto-xref">Figure&nbsp;17</a> below shows the flipper length and body mass of different penguin species</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g )) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> species, <span class="at">shape =</span> species), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Flipper length and Body mass of penguin species"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Gentoo have longer flipper and are heavier"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Flipper length(mm)"</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body mass(g)"</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Species"</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Species"</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-flipper-bmass-species" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot of penguins' flipper length and body mass, colored by species of penguins. There is a relatively strong, linear association.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flipper-bmass-species-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Portfolio_files/figure-html/fig-flipper-bmass-species-1.png" class="img-fluid figure-img" alt="A scatterplot of penguins' flipper length and body mass, colored by species of penguins. There is a relatively strong, linear association." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flipper-bmass-species-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: A scatterplot of penguins’ flipper length and body mass, colored by species of penguins.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>There is a strong positive correlation between flipper length and body mass. Gentoo penguins generally appear heavier and have longer flippers, while Adelies are lighter with shorter flippers.</p>
+</section>
+<section id="body-mass-by-species" class="level3">
+<h3 class="anchored" data-anchor-id="body-mass-by-species">Body mass by species</h3>
+<p><a href="#fig-bmass-species" class="quarto-xref">Figure&nbsp;18</a> below shows the body mass distribution by species</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Body Mass Distribution by Species"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-bmass-species" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A boxplot of penguins' body mass and species.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bmass-species-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Portfolio_files/figure-html/fig-bmass-species-1.png" class="img-fluid figure-img" alt="A boxplot of penguins' body mass and species." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bmass-species-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: A boxplot of penguins’ body mass and species.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Gentoo penguins have the highest body mass, followed by Chinstrap and Adelie. The boxplot highlights a distinct weight difference among the species, with minimal overlap.</p>
+</section>
+<section id="species-by-island" class="level3">
+<h3 class="anchored" data-anchor-id="species-by-island">Species by island</h3>
+<p><a href="#fig-species-island" class="quarto-xref">Figure&nbsp;19</a> shows species distribution by island</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Species Composition by Island"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Island"</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Proportion"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Species"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-species-island" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A barplot of penguins' body mass and species.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-species-island-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Portfolio_files/figure-html/fig-species-island-1.png" class="img-fluid figure-img" alt="A barplot of penguins' body mass and species." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-species-island-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19: A barplot of penguins’ body mass and species.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Species are distributed unevenly across islands. Adelie penguins are present on all islands, Chinstrap are exclusive to Dream, and Gentoo are only found on Biscoe.</p>
+</section>
+<section id="flipper-length-vs-body-mass-by-island" class="level3">
+<h3 class="anchored" data-anchor-id="flipper-length-vs-body-mass-by-island">Flipper length vs body mass by island</h3>
+<p><a href="#fig-flipper-bmass-species-island" class="quarto-xref">Figure&nbsp;20</a> below shows a scatterplot of flipper length by body mass faceted by island</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Flipper Length vs. Body Mass by Island"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Species"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Species"</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-flipper-bmass-species-island" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot of flipper length by body mass faceted by island.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-flipper-bmass-species-island-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Portfolio_files/figure-html/fig-flipper-bmass-species-island-1.png" class="img-fluid figure-img" alt="A scatterplot of flipper length by body mass faceted by island." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-flipper-bmass-species-island-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20: A scatterplot of flipper length by body mass faceted by island.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The relationship between flipper length and body mass holds consistently across islands, with Biscoe showing higher body mass and flipper length largely influenced by the Gentoo population.</p>
+</section>
+<section id="bill-length-and-depth-by-sex" class="level3">
+<h3 class="anchored" data-anchor-id="bill-length-and-depth-by-sex">Bill length and depth by sex</h3>
+<p><a href="#fig-billdims-sex-island" class="quarto-xref">Figure&nbsp;21</a> shows a scatterplot of bill length and depth faceted by sex.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">filter</span>(penguins, <span class="sc">!</span><span class="fu">is.na</span>(sex)), <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Bill Length vs. Bill Depth by Species and Sex"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Color shows sex; panels represent species."</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Bill Depth (mm)"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Sex"</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-billdims-sex-island" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot of bill length and depth faceted by sex.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-billdims-sex-island-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Portfolio_files/figure-html/fig-billdims-sex-island-1.png" class="img-fluid figure-img" alt="A scatterplot of bill length and depth faceted by sex." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-billdims-sex-island-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21: A scatterplot of bill length and depth faceted by sex.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Across both sexes, males generally exhibit longer and deeper bills compared to females. The distribution patterns are similar, but males show more variability and larger measurements.</p>
+</section>
+<section id="body-mass-by-species-and-sex" class="level3">
+<h3 class="anchored" data-anchor-id="body-mass-by-species-and-sex">Body mass by species and sex</h3>
+<p><a href="#fig-bmass-species-sex" class="quarto-xref">Figure&nbsp;22</a> shows a boxplot of species by body mass colored by sex.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">filter</span>(penguins, <span class="sc">!</span><span class="fu">is.na</span>(sex)), <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.75</span>)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Body Mass by Species and Sex"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Boxplots grouped by species and filled by sex"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Species"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body Mass (g)"</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Sex"</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-bmass-species-sex" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A boxplot of species by body mass colored by sex.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bmass-species-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Portfolio_files/figure-html/fig-bmass-species-sex-1.png" class="img-fluid figure-img" alt="A boxplot of species by body mass colored by sex." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bmass-species-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22: A boxplot of species by body mass colored by sex.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Within each species, males tend to be heavier than females. Gentoo males are the heaviest group overall, followed by Chinstrap and Adelie males.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
